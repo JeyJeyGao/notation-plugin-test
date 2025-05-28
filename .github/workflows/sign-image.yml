@@ -64,5 +64,5 @@ jobs:
       uses: notaryproject/notation-action/verify@v1
       with:
         target_artifact_reference: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
-        trust_policy: ./notation-config/trustpolicy.json
-        trust_store: ./notation-config/truststore
+        trust_policy: ${{ github.workspace }}/notation-config/trustpolicy.json
+        trust_store: ${{ github.workspace }}/notation-config/truststore
