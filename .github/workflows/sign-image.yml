@@ -36,7 +36,7 @@ jobs:
     - name: Install Notation
       uses: notaryproject/notation-action/setup@v1
       with:
-        version: "1.3.2"
+        version: "1.3.1"
 
     - name: Build and Push Docker Image
       run: |
