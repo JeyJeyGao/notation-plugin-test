@@ -55,7 +55,7 @@ jobs:
         key_id: ts
         target_artifact_reference: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
         signature_format: cose
-        plugin_config: 
+        plugin_config: |-
           certProfile=junjieNotationTest
           accountName=junjietts
           baseUrl="https://eus.codesigning.azure.net/"
