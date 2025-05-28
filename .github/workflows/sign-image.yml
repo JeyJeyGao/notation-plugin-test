@@ -60,14 +60,9 @@ jobs:
           accountName=junjietts
           baseUrl=https://eus.codesigning.azure.net/
         
-    # - name: Verify Signature
-    #   run: |
-    #     # Install notation if not already available in PATH
-    #     notation version
-        
-    #     # Verify the signature
-    #     notation verify ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
-
-    # - name: Output signed image reference
-    #   run: |
-    #     echo "Signed image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}"
+    - name: verify released artifact
+      uses: notaryproject/notation-action/verify@v1
+      with:
+        target_artifact_reference: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+        trust_policy: ./notation-config/trustpolicy.json
+        trust_store: ./notation-config/truststore

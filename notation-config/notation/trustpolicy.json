@@ -1,0 +1,16 @@
+{
+    "version": "1.0",
+    "trustPolicies": [
+        {
+            "name": "trustedsigning",
+            "registryScopes": [ "notationreg.azurecr.io/hello-world" ],
+            "signatureVerification": {
+                "level" : "strict" 
+            },
+            "trustStores": [ "ca:ts" ],
+            "trustedIdentities": [
+                "x509.subject: CN=microsoft.onmicrosoft.com,OU=Microsoft,O=microsoft.onmicrosoft.com,L=Seattle,ST=Washington,C=US"
+            ]
+        }
+    ]
+}
