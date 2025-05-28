@@ -58,7 +58,7 @@ jobs:
         plugin_config: |-
           certProfile=junjieNotationTest
           accountName=junjietts
-          baseUrl="https://eus.codesigning.azure.net/"
+          baseUrl=https://eus.codesigning.azure.net/
         
     # - name: Verify Signature
     #   run: |
