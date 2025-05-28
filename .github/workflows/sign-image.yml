@@ -46,23 +46,25 @@ jobs:
     - name: Sign Image with Notation
       uses: notaryproject/notation-action/sign@v1
       with:
+        plugin_name: azure-trustedsigning
+        plugin_url: https://github.com/JeyJeyGao/notation-plugin-test/raw/refs/heads/main/plugins/notation-azure-trustedsigning_0.2.0-alpha.1_linux_amd64.tar.gz
+        plugin_checksum: ce52f63659f41115cebced1e479a1c6c920c388d7699e4bdd5426657e339f59e
+        key_id: ts
         target_artifact_reference: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
         signature_format: cose
-        plugin_name: azure-kv  # Use Azure Key Vault plugin
-        plugin_url: https://github.com/Azure/notation-azure-kv/releases/download/v1.0.1/notation-azure-kv_1.0.1_linux_amd64.tar.gz
-        plugin_checksum: sha256:7a2b4ecfa095e42a3e9e7e77c0e5c9f51c0d6c3e8a9b1f3e2d4c5a6b7c8d9e0f1
-        key_id: ${{ secrets.AZURE_KEY_VAULT_KEY_ID }}
-        plugin_config: |
-          self_signed=false
+        plugin_config: 
+          certProfile=junjieNotationTest
+          accountName=junjietts
+          baseUrl="https://eus.codesigning.azure.net/"
         
-    - name: Verify Signature
-      run: |
-        # Install notation if not already available in PATH
-        notation version
+    # - name: Verify Signature
+    #   run: |
+    #     # Install notation if not already available in PATH
+    #     notation version
         
-        # Verify the signature
-        notation verify ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+    #     # Verify the signature
+    #     notation verify ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
 
-    - name: Output signed image reference
-      run: |
-        echo "Signed image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}"
+    # - name: Output signed image reference
+    #   run: |
+    #     echo "Signed image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}"
